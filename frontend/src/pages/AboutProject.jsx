@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Activity, ArrowLeft, Code, Database, Palette, Shield, Zap, GitBranch } from 'lucide-react';
+import { Activity, ArrowLeft, Code, Database, Shield, Zap, GitBranch } from 'lucide-react';
 
 const AboutProject = () => {
     return (
