@@ -291,7 +291,8 @@ const Signup = () => {
                                 </div>
                             </div>
                         )}
-
+                        {/* Admin role is blocked */}
+                        {/*
                         {formData.role === 'admin' && (
                             <div className="border-t border-gray-200 pt-6 mt-6">
                                 <h3 className="text-lg font-semibold text-gray-900 mb-4">🛠️ Admin Information</h3>
@@ -325,7 +326,7 @@ const Signup = () => {
                                 </div>
                             </div>
                         )}
-
+                        */}
 
                         <button
                             type="submit"
