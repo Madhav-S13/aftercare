@@ -82,7 +82,7 @@ const Signup = () => {
                                 I am a
                             </label>
                             <div className="grid grid-cols-3 gap-3">
-                                {['patient', 'doctor', 'admin'].map((role) => (
+                                {['patient', 'doctor'].map((role) => (
                                     <button
                                         key={role}
                                         type="button"
