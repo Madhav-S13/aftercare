@@ -37,7 +37,7 @@ const Login = () => {
                 <div className="text-center mb-8">
                     <div className="flex items-center justify-center space-x-2 mb-4">
                         <Activity className="w-10 h-10 text-primary-500" />
-                        <span className="text-3xl font-bold gradient-text">PatientCare</span>
+                        <span className="text-3xl font-bold gradient-text">AfterCare</span>
                     </div>
                     <h2 className="text-2xl font-bold text-gray-900">Welcome Back</h2>
                     <p className="text-gray-600 mt-2">Sign in to your account</p>

@@ -61,7 +61,7 @@ const Signup = () => {
                 <div className="text-center mb-8">
                     <div className="flex items-center justify-center space-x-2 mb-4">
                         <Activity className="w-10 h-10 text-primary-500" />
-                        <span className="text-3xl font-bold gradient-text">PatientCare</span>
+                        <span className="text-3xl font-bold gradient-text">AfterCare</span>
                     </div>
                     <h2 className="text-2xl font-bold text-gray-900">Create Account</h2>
                     <p className="text-gray-600 mt-2">Join the future of healthcare monitoring</p>
@@ -81,7 +81,7 @@ const Signup = () => {
                             <label className="block text-sm font-medium text-gray-700 mb-2">
                                 I am a
                             </label>
-                            <div className="grid grid-cols-3 gap-3">
+                            <div className="grid grid-cols-2 gap-3">
                                 {['patient', 'doctor'].map((role) => (
                                     <button
                                         key={role}
@@ -107,7 +107,7 @@ const Signup = () => {
                                         type="text"
                                         required
                                         className="w-full pl-12 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
-                                        placeholder="John Doe"
+                                        placeholder="Your Name"
                                         value={formData.name}
                                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                                     />
@@ -196,7 +196,7 @@ const Signup = () => {
                                         <input
                                             type="text"
                                             className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500"
-                                            placeholder="John Smith"
+                                            placeholder="Name"
                                             value={formData.emergencyContactName}
                                             onChange={(e) => setFormData({ ...formData, emergencyContactName: e.target.value })}
                                         />

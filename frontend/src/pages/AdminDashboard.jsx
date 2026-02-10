@@ -53,7 +53,7 @@ const AdminDashboard = () => {
                     <div className="flex items-center justify-between mb-8">
                         <div className="flex items-center space-x-2">
                             <Activity className="w-8 h-8 text-primary-500" />
-                            <span className="text-xl font-bold gradient-text">PatientCare</span>
+                            <span className="text-xl font-bold gradient-text">AfterCare</span>
                         </div>
                         <button onClick={() => setSidebarOpen(false)} className="lg:hidden">
                             <X className="w-6 h-6" />

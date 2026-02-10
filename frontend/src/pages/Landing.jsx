@@ -44,7 +44,7 @@ const Landing = () => {
                     <div className="flex justify-between items-center h-16">
                         <div className="flex items-center space-x-2">
                             <Activity className="w-8 h-8 text-primary-500" />
-                            <span className="text-xl font-bold gradient-text">PatientCare</span>
+                            <span className="text-xl font-bold gradient-text">AfterCare</span>
                         </div>
                         <div className="flex items-center space-x-4">
                             <Link to="/login" className="btn btn-outline">Login</Link>
@@ -55,12 +55,10 @@ const Landing = () => {
             </nav>
 
             {/* Hero Section */}
-            <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+            <section className="min-h-screen max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
                 <div className="text-center">
                     <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-4">
-                        Remote Patient Health
-                        <br />
-                        <span className="gradient-text">Monitoring System</span>
+                        <span className="gradient-text">AfterCare</span>
                     </h1>
                     <p className="text-2xl md:text-3xl font-semibold text-primary-600 mb-6">
                         Continuous Care, Anytime. Anywhere.
@@ -176,13 +174,15 @@ const Landing = () => {
                 </div>
             </section>
 
-            {/* Footer */}
+            {/* Footer 
             <footer className="bg-gray-900 text-gray-400 py-8">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                    <p>&copy; 2026 PatientCare. Remote Patient Health Monitoring System.</p>
+                    <p>&copy; 2026 AfterCare. Remote Patient Health Monitoring System.</p>
                     <p className="mt-2">Built with ❤️ for better healthcare outcomes.</p>
                 </div>
             </footer>
+            */} 
+
         </div>
     );
 };
