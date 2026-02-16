@@ -99,24 +99,22 @@ const DoctorDashboard = () => {
     };
 
     const calculateAge = (dob) => {
-        if (!dob) return null;
+        if (!dob) return ''; // return empty string if no dob
 
         const birthDate = new Date(dob);
-        const today = new Date();
+        if (isNaN(birthDate)) return ''; // invalid date
 
+        const today = new Date();
         let age = today.getFullYear() - birthDate.getFullYear();
         const monthDiff = today.getMonth() - birthDate.getMonth();
 
-        // Adjust if birthday hasn't occurred yet this year
-        if (
-            monthDiff < 0 ||
-            (monthDiff === 0 && today.getDate() < birthDate.getDate())
-        ) {
+        if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
             age--;
         }
 
         return age;
     };
+
 
     const getPrimaryCondition = (patient) => {
         if (!patient?.medicalHistory?.conditions?.length) {
@@ -257,10 +255,10 @@ const DoctorDashboard = () => {
 
                                 <div className="grid md:grid-cols-2 gap-6">
                                     <div>
-                                        <p className="text-sm text-gray-500">Age</p>
-                                        <p className="font-semibold text-lg">
-                                            {calculateAge(selectedPatient.dateOfBirth)} years
-                                        </p>
+                                        <p className="text-sm text-gray-500">Age</p> 
+                                        <p className="font-semibold text-lg"> 
+                                            {calculateAge(selectedPatient.dateOfBirth) || '--'} years 
+                                        </p> 
                                     </div>
 
                                     <div>
