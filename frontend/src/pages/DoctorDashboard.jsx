@@ -99,10 +99,10 @@ const DoctorDashboard = () => {
     };
 
     const calculateAge = (dob) => {
-        if (!dob) return ''; // return empty string if no dob
+        if (!dob) return null;
 
         const birthDate = new Date(dob);
-        if (isNaN(birthDate)) return ''; // invalid date
+        if (isNaN(birthDate.getTime())) return null; // handle invalid dates
 
         const today = new Date();
         let age = today.getFullYear() - birthDate.getFullYear();
@@ -112,11 +112,11 @@ const DoctorDashboard = () => {
             age--;
         }
 
-        console.log('DOB:', dob);
-        console.log('Age:', age);
+        console.log("hello");
 
         return age;
     };
+
 
 
     const getPrimaryCondition = (patient) => {
@@ -260,7 +260,7 @@ const DoctorDashboard = () => {
                                     <div>
                                         <p className="text-sm text-gray-500">Age</p>
                                         <p className="font-semibold text-lg">
-                                            {selectedPatient?.dateOfBirth ? `${calculateAge(selectedPatient.dateOfBirth)} years` : '-- years'}
+                                            {calculateAge(selectedPatient?.dateOfBirth) ?? '--'} years
                                         </p>
                                     </div>
 
