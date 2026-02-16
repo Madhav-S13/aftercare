@@ -112,6 +112,9 @@ const DoctorDashboard = () => {
             age--;
         }
 
+        console.log('DOB:', dob);
+        console.log('Age:', age);
+
         return age;
     };
 
@@ -255,10 +258,10 @@ const DoctorDashboard = () => {
 
                                 <div className="grid md:grid-cols-2 gap-6">
                                     <div>
-                                        <p className="text-sm text-gray-500">Age</p> 
-                                        <p className="font-semibold text-lg"> 
-                                            {calculateAge(selectedPatient.dateOfBirth) || '--'} years 
-                                        </p> 
+                                        <p className="text-sm text-gray-500">Age</p>
+                                        <p className="font-semibold text-lg">
+                                            {selectedPatient?.dateOfBirth ? `${calculateAge(selectedPatient.dateOfBirth)} years` : '-- years'}
+                                        </p>
                                     </div>
 
                                     <div>
