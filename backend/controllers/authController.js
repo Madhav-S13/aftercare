@@ -25,6 +25,19 @@ exports.register = async (req, res) => {
             });
         }
 
+        // Utility to calculate age
+        const calculateAge = (dob) => {
+            if (!dob) return null;
+            const birthDate = new Date(dob);
+            const today = new Date();
+            let age = today.getFullYear() - birthDate.getFullYear();
+            const monthDiff = today.getMonth() - birthDate.getMonth();
+            if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+                age--;
+            }
+            return age;
+        };
+
         // Create user object
         const userData = {
             email,
@@ -33,7 +46,8 @@ exports.register = async (req, res) => {
             name,
             phone,
             dateOfBirth,
-            gender
+            gender,
+            age: dateOfBirth ? calculateAge(dateOfBirth) : null // <-- calculate age here
         };
 
         // Add patient medical history
