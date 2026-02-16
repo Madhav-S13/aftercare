@@ -45,7 +45,13 @@ const PatientDashboard = () => {
 
     useEffect(() => {
         fetchData();
-    }, []);
+
+        const interval = setInterval(() => {
+            fetchData();
+        }, 10000); // 10 seconds
+
+        return () => clearInterval(interval);
+    }, []); 
 
     const fetchData = async () => {
         try {
@@ -242,6 +248,22 @@ const PatientDashboard = () => {
         );
     }
 
+    const markAlertsAsRead = async () => {
+        try {
+            await api.put('/alerts/mark-read');
+
+            // Update local state so badge disappears instantly
+            setAlerts(prev =>
+                prev.map(alert => ({
+                    ...alert,
+                    isRead: true
+                }))
+            );
+        } catch (error) {
+            console.error('Error marking alerts as read:', error);
+        }
+    };
+
     return (
         <div className="min-h-screen bg-gray-50 flex">
             {/* Sidebar */}
@@ -261,12 +283,12 @@ const PatientDashboard = () => {
                         {[
                             { id: 'overview', icon: <Activity />, label: 'Overview' },
                             { id: 'history', icon: <TrendingUp />, label: 'Health History' },
-                            { id: 'alerts', icon: <Bell />, label: 'Alerts', badge: alerts.length },
+                            { id: 'alerts', icon: <Bell />, label: 'Alerts', badge: alerts.filter(a => !a.isRead).length },
                             { id: 'gamification', icon: <Award />, label: 'My Progress' }
                         ].map((item) => (
                             <button
                                 key={item.id}
-                                onClick={() => { setActiveTab(item.id); setSidebarOpen(false); }}
+                                onClick={() => { setActiveTab(item.id); setSidebarOpen(false); if(item.id === 'alerts'){markAlertsAsRead();}}}
                                 className={`w-full flex items-center justify-between px-4 py-3 rounded-lg transition-colors ${activeTab === item.id
                                     ? 'bg-primary-50 text-primary-700'
                                     : 'text-gray-700 hover:bg-gray-100'

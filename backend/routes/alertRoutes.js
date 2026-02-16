@@ -18,4 +18,6 @@ router.put('/:id/acknowledge', protect, alertController.acknowledgeAlert);
 
 router.put('/:id/resolve', protect, authorize('doctor', 'admin'), alertController.resolveAlert);
 
+router.put('/mark-read', protect, authorize('doctor', 'patient'), alertController.markAllAsRead);
+
 module.exports = router;

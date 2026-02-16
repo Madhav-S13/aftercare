@@ -203,7 +203,11 @@ exports.sendDoctorAlert = async (req, res) => {
         }
 
         // Verify doctor is assigned to this patient
-        if (!doctor.assignedPatients.includes(patientId)) {
+        const isAssigned = doctor.assignedPatients.some(
+            id => id.toString() === patientId.toString()
+        );
+
+        if (!isAssigned) {
             return res.status(403).json({
                 success: false,
                 message: 'You are not assigned to this patient'
@@ -212,7 +216,7 @@ exports.sendDoctorAlert = async (req, res) => {
 
         const alert = await Alert.create({
             patient: patientId,
-            type: 'doctor',
+            type: 'manual',
             severity: 'high',
             title: `📩 Message from Dr. ${doctor.name}`,
             message: message,
@@ -229,6 +233,37 @@ exports.sendDoctorAlert = async (req, res) => {
         res.status(500).json({
             success: false,
             message: 'Error sending alert to patient'
+        });
+    }
+};
+
+// @desc    Mark all alerts as read for patient
+// @route   PUT /api/alerts/mark-read
+// @access  Private (Patient)
+exports.markAllAsRead = async (req, res) => {
+    try {
+        await Alert.updateMany(
+            { 
+                patient: req.user._id,
+                isRead: false
+            },
+            {
+                $set: {
+                    isRead: true,
+                    readAt: new Date()
+                }
+            }
+        );
+
+        res.status(200).json({
+            success: true,
+            message: 'Alerts marked as read'
+        });
+
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: 'Server Error'
         });
     }
 };

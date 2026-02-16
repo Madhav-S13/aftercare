@@ -18,8 +18,14 @@ const DoctorDashboard = () => {
     const [notesInput, setNotesInput] = useState('');
 
     useEffect(() => {
-        fetchData();
-    }, []);
+            fetchData();
+    
+            const interval = setInterval(() => {
+                fetchData();
+            }, 10000); // 10 seconds
+    
+            return () => clearInterval(interval);
+        }, []); 
 
     const fetchData = async () => {
         try {
@@ -90,6 +96,34 @@ const DoctorDashboard = () => {
         } catch (error) {
             alert('Error resolving alert');
         }
+    };
+
+    const calculateAge = (dob) => {
+        if (!dob) return null;
+
+        const birthDate = new Date(dob);
+        const today = new Date();
+
+        let age = today.getFullYear() - birthDate.getFullYear();
+        const monthDiff = today.getMonth() - birthDate.getMonth();
+
+        // Adjust if birthday hasn't occurred yet this year
+        if (
+            monthDiff < 0 ||
+            (monthDiff === 0 && today.getDate() < birthDate.getDate())
+        ) {
+            age--;
+        }
+
+        return age;
+    };
+
+    const getPrimaryCondition = (patient) => {
+        if (!patient?.medicalHistory?.conditions?.length) {
+            return "Not specified";
+        }
+
+        return patient.medicalHistory.conditions[0];
     };
 
     const sendAlertToPatient = async (patientId) => {
@@ -217,8 +251,32 @@ const DoctorDashboard = () => {
                             </div>
 
                             <div className="bg-white p-6 rounded-xl shadow-card mb-6">
-                                <h2 className="text-2xl font-bold mb-2">{selectedPatient.name}</h2>
-                                <p className="text-gray-600">{selectedPatient.email} | {selectedPatient.phone}</p>
+                                <h2 className="text-2xl font-bold mb-6">
+                                    {selectedPatient.name}
+                                </h2>
+
+                                <div className="grid md:grid-cols-2 gap-6">
+                                    <div>
+                                        <p className="text-sm text-gray-500">Age</p>
+                                        <p className="font-semibold text-lg">
+                                            {calculateAge(selectedPatient.dateOfBirth)} years
+                                        </p>
+                                    </div>
+
+                                    <div>
+                                        <p className="text-sm text-gray-500">Phone</p>
+                                        <p className="font-semibold text-lg">
+                                            {selectedPatient.phone}
+                                        </p>
+                                    </div>
+
+                                    <div className="md:col-span-2">
+                                        <p className="text-sm text-gray-500">Condition</p>
+                                        <p className="font-semibold text-lg">
+                                            {getPrimaryCondition(selectedPatient)}
+                                        </p>
+                                    </div>
+                                </div>
                             </div>
 
                             <h3 className="text-xl font-semibold mb-4">Health Records</h3>

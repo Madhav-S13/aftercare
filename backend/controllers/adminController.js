@@ -297,7 +297,7 @@ exports.getPatientsList = async (req, res) => {
         }
 
         const patients = await User.find(query)
-            .select('name email phone assignedDoctor healthStreak consistencyScore')
+            .select('name email phone dateOfBirth medicalHistory assignedDoctor healthStreak consistencyScore')
             .populate('assignedDoctor', 'name specialization');
 
         res.status(200).json({
