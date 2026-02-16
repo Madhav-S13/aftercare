@@ -14,7 +14,7 @@ const generateToken = (id) => {
 // @access  Public
 exports.register = async (req, res) => {
     try {
-        const { email, password, role, name, phone, dateOfBirth, gender, specialization, licenseNumber } = req.body;
+        const { email, password, role, name, phone, dateOfBirth, gender, specialization, licenseNumber, medicalHistory } = req.body;
 
         // Check if user already exists
         const userExists = await User.findOne({ email });
@@ -35,6 +35,18 @@ exports.register = async (req, res) => {
             dateOfBirth,
             gender
         };
+
+        // Add patient medical history
+        if ((role === 'patient' || !role) && medicalHistory) {
+            userData.medicalHistory = {
+                conditions: medicalHistory
+                    .split(',')
+                    .map(item => item.trim())
+                    .filter(item => item.length > 0),
+                allergies: [],
+                medications: []
+            };
+        }
 
         // Add doctor-specific fields
         if (role === 'doctor') {

@@ -73,7 +73,17 @@ const alertSchema = new mongoose.Schema({
     // Additional data
     triggerValues: {
         type: mongoose.Schema.Types.Mixed
+    },
+
+    isRead: {
+    type: Boolean,
+    default: false
+    },
+    
+    readAt: {
+        type: Date
     }
+
 }, {
     timestamps: true
 });
