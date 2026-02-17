@@ -189,28 +189,9 @@ const Signup = () => {
                         {/* Role-Specific Fields */}
                         {formData.role === 'patient' && (
                             <div className="border-t border-gray-200 pt-6 mt-6">
-                                <h3 className="text-lg font-semibold text-gray-900 mb-4">📋 Patient Information</h3>
+                                <h3 className="text-lg font-semibold text-gray-900 mb-4">Patient Information</h3>
                                 <div className="grid md:grid-cols-2 gap-4">
-                                    <div>
-                                        <label className="block text-sm font-medium text-gray-700 mb-2">Emergency Contact Name</label>
-                                        <input
-                                            type="text"
-                                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500"
-                                            placeholder="Name"
-                                            value={formData.emergencyContactName}
-                                            onChange={(e) => setFormData({ ...formData, emergencyContactName: e.target.value })}
-                                        />
-                                    </div>
-                                    <div>
-                                        <label className="block text-sm font-medium text-gray-700 mb-2">Emergency Contact Phone</label>
-                                        <input
-                                            type="tel"
-                                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500"
-                                            placeholder="234 567 8900"
-                                            value={formData.emergencyContactPhone}
-                                            onChange={(e) => setFormData({ ...formData, emergencyContactPhone: e.target.value })}
-                                        />
-                                    </div>
+                                    
                                     <div>
                                         <label className="block text-sm font-medium text-gray-700 mb-2">Blood Type</label>
                                         <select
@@ -230,13 +211,33 @@ const Signup = () => {
                                         </select>
                                     </div>
                                     <div className="md:col-span-2">
-                                        <label className="block text-sm font-medium text-gray-700 mb-2">Medical History (Optional)</label>
+                                        <label className="block text-sm font-medium text-gray-700 mb-2">Medical History</label>
                                         <textarea
                                             className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500"
                                             rows="2"
-                                            placeholder="Any chronic conditions, allergies, or ongoing medications..."
+                                            placeholder="Surgery or the operation, patient went through..."
                                             value={formData.medicalHistory}
                                             onChange={(e) => setFormData({ ...formData, medicalHistory: e.target.value })}
+                                        />
+                                    </div>
+                                    <div>
+                                        <label className="block text-sm font-medium text-gray-700 mb-2">Caretaker Name</label>
+                                        <input
+                                            type="text"
+                                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500"
+                                            placeholder="Name"
+                                            value={formData.emergencyContactName}
+                                            onChange={(e) => setFormData({ ...formData, emergencyContactName: e.target.value })}
+                                        />
+                                    </div>
+                                    <div>
+                                        <label className="block text-sm font-medium text-gray-700 mb-2">Caretaker Contact Phone</label>
+                                        <input
+                                            type="tel"
+                                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500"
+                                            placeholder="234 567 8900"
+                                            value={formData.emergencyContactPhone}
+                                            onChange={(e) => setFormData({ ...formData, emergencyContactPhone: e.target.value })}
                                         />
                                     </div>
                                 </div>
@@ -245,7 +246,7 @@ const Signup = () => {
 
                         {formData.role === 'doctor' && (
                             <div className="border-t border-gray-200 pt-6 mt-6">
-                                <h3 className="text-lg font-semibold text-gray-900 mb-4">👨‍⚕️ Doctor Credentials</h3>
+                                <h3 className="text-lg font-semibold text-gray-900 mb-4">Doctor Credentials</h3>
                                 <div className="grid md:grid-cols-2 gap-4">
                                     <div>
                                         <label className="block text-sm font-medium text-gray-700 mb-2">Medical License Number *</label>
