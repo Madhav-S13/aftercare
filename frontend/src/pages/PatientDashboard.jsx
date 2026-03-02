@@ -82,7 +82,7 @@ const PatientDashboard = () => {
         try {
             const response = await api.post('/health', {
                 ...formData,
-                submittedVia: voiceMode ? 'voice' : 'manual'
+                submittedVia: 'manual'
             });
 
             setFormData({
