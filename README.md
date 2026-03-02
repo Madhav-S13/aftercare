@@ -6,12 +6,10 @@ A full-stack, production-ready web application enabling doctors to monitor patie
 
 ### For Patients
 - 📊 **Daily Health Data Submission** - Submit vitals (BP, Heart Rate, SpO₂, Temperature)
-- 🎙️ **Voice-Based Data Entry** - Hands-free health data input (optimized for elderly users)
 - 📈 **Personal Health Trends** - Interactive charts showing health progress
 - 🎮 **Gamification** - Health streaks, badges, and consistency scores
 - 🚨 **Emergency SOS** - One-click emergency alert with location sharing
 - 💬 **Doctor Feedback** - View medical advice and recommendations
-- 📴 **Offline Mode** - Capture data offline, auto-sync when online
 
 ### For Doctors
 - 👥 **Patient Management** - View all assigned patients
@@ -19,7 +17,6 @@ A full-stack, production-ready web application enabling doctors to monitor patie
 - 📊 **Advanced Analytics** - Trend analysis and health statistics
 - 🔔 **Intelligent Alerts** - Receive notifications for abnormal conditions
 - 📝 **Medical Notes** - Add professional notes to patient records
-- 📄 **Download Reports** - Generate PDF health reports
 
 ### For Administrators
 - 👤 **User Management** - Manage patients, doctors, and admins
@@ -130,12 +127,7 @@ After starting the application, you can create accounts with these roles:
    - Enter vitals manually or use voice input
    - View instant risk analysis
 
-2. **Voice Input:**
-   - Click "Voice Input" button
-   - Say: "Blood pressure 120 over 80, heart rate 75, oxygen 98, temperature 98.6"
-   - Values will auto-populate
-
-3. **Emergency SOS:**
+2. **Emergency SOS:**
    - Click red "SOS" button in header
    - Alerts doctor and emergency contacts immediately
 
