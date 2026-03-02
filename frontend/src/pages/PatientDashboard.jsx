@@ -3,7 +3,7 @@ import { useAuth } from '../contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import api from '../services/api';
 import {
-    Activity, Heart, Thermometer, Wind, LogOut, Plus, Mic, AlertTriangle,
+    Activity, Heart, Thermometer, Wind, LogOut, Plus, AlertTriangle,
     TrendingUp, Award, Flame, Target, Bell, Menu, X
 } from 'lucide-react';
 import { Line } from 'react-chartjs-2';
@@ -110,59 +110,6 @@ const PatientDashboard = () => {
             const errorMsg = error.response?.data?.message || error.message || 'Please check your internet connection';
             alert('❌ Error: ' + errorMsg);
         }
-    };
-
-    const handleVoiceInput = () => {
-        if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
-            alert('Voice input not supported in this browser. Please use Chrome or Edge.');
-            return;
-        }
-
-        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-        const recognition = new SpeechRecognition();
-
-        recognition.continuous = false;
-        recognition.interimResults = false;
-
-        recognition.onstart = () => {
-            setVoiceMode(true);
-        };
-
-        recognition.onresult = (event) => {
-            const transcript = event.results[0][0].transcript.toLowerCase();
-            console.log('Voice input:', transcript);
-
-            // Simple parsing (can be enhanced)
-            const bpMatch = transcript.match(/blood pressure (\d+) over (\d+)/);
-            const hrMatch = transcript.match(/heart rate (\d+)/);
-            const spO2Match = transcript.match(/oxygen (\d+)/);
-            const tempMatch = transcript.match(/temperature (\d+(?:\.\d+)?)/);
-
-            if (bpMatch) {
-                setFormData(prev => ({
-                    ...prev,
-                    bloodPressure: { systolic: bpMatch[1], diastolic: bpMatch[2] }
-                }));
-            }
-            if (hrMatch) {
-                setFormData(prev => ({ ...prev, heartRate: hrMatch[1] }));
-            }
-            if (spO2Match) {
-                setFormData(prev => ({ ...prev, spO2: spO2Match[1] }));
-            }
-            if (tempMatch) {
-                setFormData(prev => ({ ...prev, temperature: tempMatch[1] }));
-            }
-
-            setVoiceMode(false);
-        };
-
-        recognition.onerror = () => {
-            setVoiceMode(false);
-            alert('Voice recognition error. Please try again.');
-        };
-
-        recognition.start();
     };
 
     const triggerSOS = async () => {
