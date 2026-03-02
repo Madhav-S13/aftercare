@@ -32,7 +32,6 @@ const PatientDashboard = () => {
     const [alerts, setAlerts] = useState([]);
     const [loading, setLoading] = useState(true);
     const [showForm, setShowForm] = useState(false);
-    const [voiceMode, setVoiceMode] = useState(false);
     const [formData, setFormData] = useState({
         bloodPressure: { systolic: '', diastolic: '' },
         heartRate: '',
