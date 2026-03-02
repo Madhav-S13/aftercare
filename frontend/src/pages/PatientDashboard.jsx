@@ -381,9 +381,6 @@ const PatientDashboard = () => {
                                 <button onClick={() => setShowForm(!showForm)} className="btn btn-primary flex items-center space-x-2">
                                     <Plus /> <span>Submit Health Data</span>
                                 </button>
-                                <button onClick={handleVoiceInput} className="btn btn-outline flex items-center space-x-2" disabled={voiceMode}>
-                                    <Mic /> <span>{voiceMode ? 'Listening...' : 'Voice Input'}</span>
-                                </button>
                             </div>
 
                             {/* Health Data Form */}
