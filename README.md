@@ -1,6 +1,6 @@
 # Remote Patient Health Monitoring System 🏥
 
-A full-stack, production-ready web application enabling doctors to monitor patients remotely after hospital discharge, featuring AI-based predictive healthcare, intelligent automation, patient safety features, and engagement tools.
+A full-stack healthcare monitoring platform that enables patients to submit daily health data and allows doctors to remotely monitor patient conditions, manage alerts, and provide medical feedback.
 
 ## 🌟 Core Features
 
