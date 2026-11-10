@@ -1,277 +1,207 @@
-# Remote Patient Health Monitoring System 🏥
+# AfterCare – Remote Patient Health Monitoring System
 
-A full-stack healthcare monitoring platform that enables patients to submit daily health data and allows doctors to remotely monitor patient conditions, manage alerts, and provide medical feedback.
+AfterCare is a full-stack web application prototype designed to support post-discharge patient monitoring and communication between patients and their assigned doctors.
 
-## 🌟 Core Features
+Patients can manually submit health readings and review their health history. Doctors can access records of their assigned patients, add medical notes, and review alerts generated from submitted readings. An administrator manages users and assigns doctors to patients.
 
-### For Patients
-- 📊 **Daily Health Data Submission** - Submit vitals (BP, Heart Rate, SpO₂, Temperature)
-- 📈 **Personal Health Trends** - Interactive charts showing health progress
-- 🎮 **Gamification** - Health streaks, badges, and consistency scores
-- 🚨 **Emergency SOS** - One-click emergency alert with location sharing
-- 💬 **Doctor Feedback** - View medical advice and recommendations
+The project demonstrates the development of a role-based healthcare application using React, Node.js, Express.js, and MongoDB.
 
-### For Doctors
-- 👥 **Patient Management** - View all assigned patients
-- 🔍 **Real-time Monitoring** - Monitor patient health data in real-time
-- 📊 **Advanced Analytics** - Trend analysis and health statistics
-- 🔔 **Intelligent Alerts** - Receive notifications for abnormal conditions
-- 📝 **Medical Notes** - Add professional notes to patient records
+## Features
 
-### For Administrators
-- 👤 **User Management** - Manage patients, doctors, and admins
-- 🔗 **Doctor Assignment** - Assign doctors to patients
-- 📊 **System Analytics** - Monitor platform usage and statistics
-- 📋 **Audit Logs** - Track system activity
+### Patient
+- Register and log in securely.
+- Submit health readings, including blood pressure, heart rate, SpO₂, and body temperature.
+- Add remarks when submitting health records.
+- View previously submitted health records.
+- View alerts associated with submitted readings.
+- Submit an emergency SOS record.
 
-## 🧠 AI & Innovation Features
+### Doctor
+- View patients assigned to their account.
+- Access the health history of assigned patients.
+- Review submitted health readings and associated remarks.
+- Add notes to patient records.
+- View and manage alerts associated with patients.
 
-1. **AI-Based Health Risk Prediction**
-   - Analyzes patient vitals against normal ranges
-   - Categorizes risk: Normal (0-40), Warning (41-70), Critical (71-100)
-   - Trend detection for early intervention
+### Administrator
+- Manage patient and doctor accounts.
+- Assign doctors to patients.
+- View user and system information.
 
-2. **Intelligent Alert & Escalation System**
-   - Auto-detects threshold violations
-   - Color-coded alerts (Green/Yellow/Red)
-   - Multi-level escalation (Patient → Doctor → Emergency)
+## Health Record and Alert Workflow
 
-3. **Smart Decision Support**
-   - Auto-summarizes patient conditions
-   - Highlights anomalies
-   - Suggests next medical actions
+1. A patient logs in and manually enters their health readings.
+2. The frontend sends the submitted information to the backend through a REST API.
+3. The backend validates the request and stores the health record in MongoDB.
+4. The application evaluates the submitted readings against configured thresholds and assigns a risk status.
+5. If a reading meets a configured critical condition, an alert is generated for the patient and their assigned doctor.
+6. The doctor can review the record and add notes for the patient.
 
-## 🛠️ Technology Stack
+**Note:** Risk categorization is based on configured rules and thresholds. It is not an AI/ML prediction model or a medical diagnosis.
 
-### Frontend
-- **React 18** - Modern UI library
-- **React Router v6** - Client-side routing
-- **Tailwind CSS** - Utility-first styling
-- **Chart.js** - Data visualization
-- **Axios** - HTTP client
-- **Web Speech API** - Voice recognition
+## Technology Stack
 
-### Backend
-- **Node.js** - Runtime environment
-- **Express.js** - Web framework
-- **MongoDB** - NoSQL database
-- **Mongoose** - ODM
-- **JWT** - Authentication
-- **bcryptjs** - Password hashing
-- **PDFKit** - Report generation
+| Layer | Technologies |
+|---|---|
+| Frontend | React, JavaScript, Tailwind CSS |
+| Backend | Node.js, Express.js |
+| Database | MongoDB, Mongoose |
+| Authentication | JSON Web Tokens (JWT) |
+| Password Security | bcrypt |
+| API Communication | REST APIs, Axios |
+| Deployment | Vercel (Frontend), Render (Backend) |
 
-## 📋 Prerequisites
+## Application Architecture
 
-- Node.js (v14 or higher)
-- MongoDB (local or Atlas)
-- npm or yarn
+AfterCare follows a client-server architecture.
 
-## 🚀 Installation & Setup
+- **Frontend:** React handles the user interface, dashboards, forms, and communication with the backend.
+- **Backend:** Node.js and Express.js provide REST API endpoints, handle authentication, validate requests, and implement application logic.
+- **Database:** MongoDB stores user accounts, health records, alerts, and emergency records.
+- **Authentication and Authorization:** JWT-based authentication identifies logged-in users, while role-based access controls which resources and operations they can access.
 
-### 1. Clone the Repository
-\`\`\`bash
-# If you haven't already
-cd /Users/dharani/Desktop/patientCare
-\`\`\`
+### Data Flow
 
-### 2. Backend Setup
-\`\`\`bash
-cd backend
+```text
+Patient / Doctor / Admin
+          |
+          v
+    React Frontend
+          |
+       REST API
+          |
+          v
+   Node.js + Express
+          |
+   Validation & Logic
+          |
+          v
+       MongoDB
+```
 
-# Install dependencies
-npm install
+## Project Structure
 
-# The .env file is already configured with defaults
-# Update MONGODB_URI if using MongoDB Atlas:
-# MONGODB_URI=mongodb+srv://<username>:<password>@cluster.mongodb.net/patientcare
-
-# Start MongoDB (if using local)
-# mongod
-
-# Start backend server
-npm run dev
-# Server will run on http://localhost:5000
-\`\`\`
-
-### 3. Frontend Setup
-\`\`\`bash
-cd ../frontend
-
-# Install dependencies
-npm install
-
-# Start frontend development server
-npm start
-# Application will run on http://localhost:3000
-\`\`\`
-
-## 👥 User Roles & Test Accounts
-
-After starting the application, you can create accounts with these roles:
-
-1. **Patient** - Regular users who submit health data
-2. **Doctor** - Medical professionals who monitor patients
-3. **Admin** - System administrators
-
-### Creating Test Users
-1. Go to http://localhost:3000/signup
-2. Select role (Patient/Doctor/Admin)
-3. Fill in details and create account
-
-## 📱 Usage Guide
-
-### For Patients
-
-1. **Submit Health Data:**
-   - Login → Dashboard → "Submit Health Data"
-   - Enter vitals manually or use voice input
-   - View instant risk analysis
-
-2. **Emergency SOS:**
-   - Click red "SOS" button in header
-   - Alerts doctor and emergency contacts immediately
-
-### For Doctors
-
-1. **Monitor Patients:**
-   - View list of assigned patients
-   - Click patient to see detailed health history
-   - Add medical notes to records
-
-2. **Manage Alerts:**
-   - View all active alerts
-   - Acknowledge or resolve alerts
-   - Contact patients as needed
-
-### For Admins
-
-1. **Assign Doctors:**
-   - Go to "Assign Doctor" tab
-   - Copy patient ID and doctor ID from respective tabs
-   - Submit assignment
-
-2. **View Statistics:**
-   - Dashboard shows system-wide analytics
-   - Monitor user activity and alerts
-
-## 🏗️ Project Structure
-
-\`\`\`
-patientCare/
+```text
+aftercare/
+│
 ├── backend/
 │   ├── config/          # Database configuration
-│   ├── controllers/     # Business logic
-│   ├── middleware/      # Auth, validation, error handling
-│   ├── models/          # MongoDB schemas
-│   ├── routes/          # API endpoints
-│   ├── utils/           # Helper functions (AI risk analysis)
-│   ├── .env             # Environment variables
-│   └── server.js        # Express server entry point
+│   ├── controllers/     # Request handling and application logic
+│   ├── middleware/      # Authentication and validation
+│   ├── models/          # MongoDB models
+│   ├── routes/          # REST API routes
+│   └── server.js        # Backend entry point
 │
 ├── frontend/
-│   ├── public/          # Static files
-│   ├── src/
-│   │   ├── components/  # Reusable UI components
-│   │   ├── contexts/    # React contexts (Auth)
-│   │   ├── pages/       # Page components
-│   │   ├── services/    # API service
-│   │   ├── App.js       # Main app component
-│   │   └── index.js     # React entry point
-│   └── package.json
+│   ├── public/
+│   └── src/
+│       ├── components/  # Reusable UI components
+│       ├── contexts/    # Application contexts
+│       ├── pages/       # Application pages
+│       ├── services/    # API communication
+│       ├── App.js
+│       └── index.js
 │
 └── README.md
-\`\`\`
+```
 
-## 🔒 Security Features
+## Getting Started
 
-- **JWT Authentication** - Secure token-based auth
-- **Password Hashing** - bcrypt with salt rounds
-- **Role-Based Access Control** - Route protection by user role
-- **Input Validation** - Express-validator for data sanitization
-- **CORS Configuration** - Controlled cross-origin requests
+### Prerequisites
 
-## 📊 API Endpoints
+Make sure the following are installed:
 
-### Authentication
-- `POST /api/auth/register` - Register new user
-- `POST /api/auth/login` - Login user
-- `GET /api/auth/me` - Get current user
-- `PUT /api/auth/profile` - Update profile
+- Node.js and npm
+- MongoDB instance (local or MongoDB Atlas)
+- Git
 
-### Health Data
-- `POST /api/health` - Submit health data
-- `GET /api/health/history` - Get patient history
-- `GET /api/health/patient/:id` - Get patient data (doctor)
-- `PUT /api/health/:id/notes` - Add doctor notes
+### 1. Clone the Repository
 
-### Alerts
-- `GET /api/alerts` - Get patient alerts
-- `GET /api/alerts/doctor` - Get doctor alerts
-- `PUT /api/alerts/:id/acknowledge` - Acknowledge alert
-- `PUT /api/alerts/:id/resolve` - Resolve alert
+```bash
+git clone https://github.com/Madhav-S13/aftercare.git
+cd aftercare
+```
 
-### Admin
-- `GET /api/admin/users` - Get all users
-- `GET /api/admin/stats` - Get system statistics
-- `POST /api/admin/assign-doctor` - Assign doctor to patient
-- `GET /api/admin/patients` - Get all patients
-- `GET /api/admin/doctors` - Get all doctors
+### 2. Configure the Backend
 
-### Emergency
-- `POST /api/emergency` - Trigger SOS
-- `GET /api/emergency` - Get emergency records
+```bash
+cd backend
+npm install
+```
 
-## 🎯 Software Engineering Practices
+Create a `.env` file in the backend directory and configure the required environment variables.
 
-1. **Incremental Development Model** - Built in 15 progressive phases
-2. **MVC Architecture** - Clear separation of concerns
-3. **Modular Design** - Reusable components and utilities
-4. **Error Handling** - Comprehensive try-catch and validation
-5. **RESTful API** - Standard HTTP methods and status codes
-6. **Responsive Design** - Mobile-first approach
+For example:
 
-## 🚢 Deployment
+```env
+MONGODB_URI=your_mongodb_connection_string
+JWT_SECRET=your_jwt_secret
+FRONTEND_URL=http://localhost:3000
+```
 
-### Backend (Render)
-1. Push code to GitHub
-2. Create new Web Service on Render
-3. Connect repository
-4. Set environment variables
-5. Deploy
+Use the environment variable names expected by the backend configuration. Do not commit your `.env` file or expose database credentials.
 
-### Frontend (Render/Vercel/Netlify)
-1. Build production bundle: `npm run build`
-2. Deploy build folder to hosting service
-3. Set API URL environment variable
+Start the backend:
 
-## 🐛 Troubleshooting
+```bash
+npm run dev
+```
 
-### MongoDB Connection Issues
-- Ensure MongoDB is running locally
-- Check MONGODB_URI in backend/.env
-- For Atlas, whitelist your IP address
+### 3. Configure the Frontend
 
-### CORS Errors
-- Verify FRONTEND_URL in backend/.env matches your frontend URL
-- Check CORS configuration in backend/server.js
+Open another terminal:
 
-### Voice Input Not Working
-- Use Chrome or Edge browser
-- Allow microphone permissions
-- Check console for Speech Recognition API support
+```bash
+cd frontend
+npm install
+npm start
+```
 
-## 📝 License
+The frontend and backend should now be running locally. Configure the frontend API base URL to point to the backend address.
 
-MIT License - feel free to use this project for educational purposes.
+## API Modules
 
-## 👨‍💻 Developer
+The backend exposes REST API routes organized around the following modules:
 
-Built with ❤️ for advancing remote healthcare monitoring.
+| Module | Responsibility |
+|---|---|
+| Authentication | User registration, login, and profile operations |
+| Health Records | Submit readings, retrieve health history, and add doctor notes |
+| Alerts | Retrieve, acknowledge, and resolve alerts |
+| Administration | User management and doctor-patient assignment |
+| Emergency | Submit and retrieve emergency records |
 
-## 📞 Support
+## Security and Access Control
 
-For issues or questions, please check the troubleshooting section or review the code documentation.
+- JWT-based authentication for protected API requests.
+- Password hashing using bcrypt.
+- Role-based access for patient, doctor, and administrator workflows.
+- Backend request validation.
+- CORS configuration for frontend-backend communication.
 
----
+## Project Scope and Limitations
 
-**Note:** This is an academic project demonstrating modern full-stack development with healthcare-focused features. For production use, additional security audits, HIPAA compliance measures, and thorough testing are recommended.
+AfterCare is an academic full-stack application prototype. It demonstrates basic post-discharge monitoring workflows and communication between patients and assigned doctors.
+
+- Health readings are entered manually by patients.
+- The application does not connect to wearable devices or medical sensors.
+- Risk categorization uses configured threshold-based rules, not machine learning.
+- It does not provide medical diagnoses or replace professional medical advice.
+- The application is not intended for production clinical use.
+
+## Future Improvements
+
+Potential improvements include:
+- Integration with wearable health-monitoring devices.
+- Real-time updates and notification services.
+- More detailed health trend visualizations.
+- Improved reporting and export functionality.
+- Additional security and deployment hardening.
+
+## Author
+
+**Madhav S**  
+B.Tech – Information Technology  
+Kumaraguru College of Technology
+
+[GitHub Repository](https://github.com/Madhav-S13/aftercare)
